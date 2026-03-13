@@ -9,7 +9,8 @@
 		"lint:js": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
 		"lint:style": "stylelint **/*.{vue,css,scss} --ignore-path .gitignore",
 		"lint": "npm run lint:js && npm run lint:style",
-		"lintfix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore . && stylelint --fix **/*.{vue,css,scss} --ignore-path .gitignore"
+		"lintfix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore . && stylelint --fix **/*.{vue,css,scss} --ignore-path .gitignore",
+		"codegen": "graphql-codegen --config codegen.ts --watch"
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown --ignore-path .prettierignore",
@@ -23,26 +24,36 @@
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^3.8.0",
-		"@nuxtjs/apollo": "^5.0.0-alpha.9",
+		"@nuxtjs/apollo": "^5.0.0-alpha.16",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^9.14.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.1",
 		"husky": "^9.1.6",
 		"lint-staged": "^15.2.10",
-		"nuxt": "^3.14.159",
+		"nuxt": "^4.3.1",
 		"postcss-html": "^1.7.0",
 		"prettier": "^3.3.3",
 		"stylelint": "^16.10.0",
 		"stylelint-config-standard-scss": "^13.1.0",
 		"stylelint-config-standard-vue": "^1.0.0",
-		"vite-plugin-vuetify": "^2.0.4"
+		"vite-plugin-vuetify": "^2.0.4",
+		"@graphql-codegen/cli": "6.1.3",
+		"@graphql-codegen/client-preset": "5.2.4",
+		"@graphql-codegen/introspection": "5.0.1",
+		"@graphql-codegen/schema-ast": "^5.0.1",
+		"@parcel/watcher": "^2.5.6"
 	},
 	"dependencies": {
 		"@mdi/font": "^7.2.96",
-		"@pinia/nuxt": "^0.5.1",
+		"@pinia/nuxt": "^0.11.3",
 		"sass": "^1.68.0",
-		"vuetify": "^3.3.23"
+		"vuetify": "^4.0.1"
 	},
-	"version": "3.0.0"
+	"version": "3.0.0",
+	"overrides": {
+		"serialize-javascript": "^7.0.4",
+		"lodash": "^4.17.23",
+		"tmp": "0.2.5"
+	}
 }
