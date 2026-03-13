@@ -10,6 +10,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 		// Refer to https://vuetifyjs.com/en/features/icon-fonts/
 		// icons: { defaultSet: 'mdi', aliases, sets: { mdi } },
 		ssr: true,
+		theme: {
+			defaultTheme: 'light'
+		}
 	})
 
 	nuxtApp.vueApp.use(vuetify)

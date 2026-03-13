@@ -10,15 +10,19 @@ export default defineNuxtConfig({
 		autoImports: true,
 		proxyCookies: true,
 		clients: {
-			default: { httpEndpoint: 'https://spacex-production.up.railway.app/' },
+			default: { httpEndpoint: 'https://spacex-api.fly.dev/graphql/' },
 		},
 	},
 
 	vite: {
 		optimizeDeps: {
-			include: ['graphql-tag'],
+			include: [
+				'graphql-tag',
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+			]
 		},
-		plugins: [vuetify()],
+		plugins: [vuetify() as any],
 	},
 
 	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'] }]],
