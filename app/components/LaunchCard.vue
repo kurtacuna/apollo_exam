@@ -10,7 +10,7 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment';
 </script>
 
 <template>
-    <v-card class="d-flex flex-column" height="100%">
+    <v-card class="d-flex flex-column py-4" height="100%">
         <v-card-title class="text-wrap">
             <h5 class="ma-0">{{ launch.mission_name }}</h5>
         </v-card-title>
