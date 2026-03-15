@@ -27,28 +27,18 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment'
 	<div class="d-flex justify-space-between align-end">
 		<h1>Launches</h1>
 		<div class="d-flex">
-			<v-select
+			<Select
 				v-model="selectedYear"
-				label="Filter by year"
 				:items="launchYears"
-				density="comfortable"
+				label="Filter by year"
 				:hint="selectedYear && `Showing results for ${selectedYear}`"
-				persistent-hint
-				clearable
-				class="mb-1 me-2"
-				width="200"
-				:menu-props="{ scrim: true, scrollStrategy: 'close' }"
-			></v-select>
-			<v-select
+				class="me-2"
+			></Select>
+			<Select
 				v-model="selectedSort"
-				label="Sort launch date"
-				density="comfortable"
-				clearable
-				width="200"
-				class="mb-1"
-				:menu-props="{ scrim: true, scrollStrategy: 'close' }"
 				:items="sortOptions"
-			></v-select>
+				label="Sort launch date"
+			></Select>
 		</div>
 	</div>
 	<v-row size="3">
