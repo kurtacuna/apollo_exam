@@ -1,12 +1,26 @@
 <script setup lang='ts'>
 import { useFragment, type FragmentType } from '~/gql';
 import LaunchCardFragment from '~/fragments/LaunchCardFragment';
+import { useFavoriteRocketsStore } from '#imports';
 
     const props = defineProps<{
         launch: FragmentType<typeof LaunchCardFragment>
     }>()
 
     const launch = computed(() => useFragment(LaunchCardFragment, props.launch))
+    
+    const favoriteRocketsStore = useFavoriteRocketsStore()
+    const rocketIsFavorite = computed(() => {
+        return favoriteRocketsStore.isFavorite(launch.value.rocket?.rocket?.id)
+    })
+
+    function toggleFavoriteRocket() {
+        if (rocketIsFavorite.value) {
+            favoriteRocketsStore.removeFromFavorite(launch.value.rocket?.rocket?.id)
+        } else {
+            favoriteRocketsStore.addToFavorite(launch.value.rocket?.rocket?.id)
+        }
+    }
 </script>
 
 <template>
@@ -24,7 +38,24 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment';
         </v-card-subtitle>
         <v-card-text>
             <div class="d-flex justify-space-between align-center">
-                <h4 class="ma-0"> Rocket: {{ launch.rocket?.rocket_name }}</h4>
+                <v-btn variant="flat" @click="toggleFavoriteRocket">
+                    <v-icon
+                        v-if="!rocketIsFavorite"
+                        icon="mdi-rocket-outline"
+                        start
+                        size="large"
+                    ></v-icon>
+                    <v-icon
+                        v-if="rocketIsFavorite"
+                        icon="mdi-rocket"
+                        color="red"
+                        start
+                        size="large"
+                    ></v-icon>
+                    <span class="font-weight-bold">
+                        {{ launch.rocket?.rocket_name }}
+                    </span>
+                </v-btn>
                 <v-btn
                     :to="`/rockets/${launch.rocket?.rocket?.id}`"
                     variant="outlined"
@@ -35,7 +66,7 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment';
                         <v-icon icon="mdi-play"></v-icon>
                 </v-btn>
             </div>
-            <h5 class="mb-2">Details:</h5>
+            <h5 class="mb-2">Launch Details:</h5>
             <p class="mt-0">{{ launch.details }}</p>
             <p v-if="!launch.details" class="mt-0 text-medium-emphasis">No Details</p>
         </v-card-text>
