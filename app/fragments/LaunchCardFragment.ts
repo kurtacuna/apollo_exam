@@ -11,7 +11,10 @@ const LaunchCardFragment = graphql(`
             site_name_long
         },
         rocket {
-            rocket_name
+            rocket_name,
+            rocket {
+                id
+            }
         },
         details
     }

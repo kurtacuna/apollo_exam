@@ -14,11 +14,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n": typeof types.LaunchCardFragmentFragmentDoc,
+    "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name,\n            rocket {\n                id\n            }\n        },\n        details\n    }\n": typeof types.LaunchCardFragmentFragmentDoc,
     "\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t": typeof types.LaunchesDocument,
 };
 const documents: Documents = {
-    "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n": types.LaunchCardFragmentFragmentDoc,
+    "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name,\n            rocket {\n                id\n            }\n        },\n        details\n    }\n": types.LaunchCardFragmentFragmentDoc,
     "\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t": types.LaunchesDocument,
 };
 
@@ -39,7 +39,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n"): (typeof documents)["\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n"];
+export function graphql(source: "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name,\n            rocket {\n                id\n            }\n        },\n        details\n    }\n"): (typeof documents)["\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name,\n            rocket {\n                id\n            }\n        },\n        details\n    }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

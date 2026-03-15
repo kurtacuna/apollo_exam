@@ -23,11 +23,21 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment';
             </sub>
         </v-card-subtitle>
         <v-card-text>
-            <h4 class="ma-0"> Rocket: {{ launch.rocket?.rocket_name }}</h4>
+            <div class="d-flex justify-space-between align-center">
+                <h4 class="ma-0"> Rocket: {{ launch.rocket?.rocket_name }}</h4>
+                <v-btn
+                    :to="`/rockets/${launch.rocket?.rocket?.id}`"
+                    variant="outlined"
+                    class="text-label-medium"
+                    density="compact"
+                >
+                        Rocket Details
+                        <v-icon icon="mdi-play"></v-icon>
+                </v-btn>
+            </div>
             <h5 class="mb-2">Details:</h5>
             <p class="mt-0">{{ launch.details }}</p>
             <p v-if="!launch.details" class="mt-0 text-medium-emphasis">No Details</p>
-            <h2>{{ launch.launch_year }}</h2>
         </v-card-text>
     </v-card>
 </template>
