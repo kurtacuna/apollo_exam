@@ -36,7 +36,7 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment'
 				persistent-hint
 				clearable
 				class="mb-1 me-2"
-				width="200",
+				width="200"
 				:menu-props="{ scrim: true, scrollStrategy: 'close' }"
 			></v-select>
 			<v-select
