@@ -6,9 +6,6 @@ const config: CodegenConfig = {
   generates: {
     './app/gql/': {
       preset: 'client',
-      config: {
-        useTypeImports: true
-      }
     },
     './schema.graphql': {
       plugins: ['schema-ast'],

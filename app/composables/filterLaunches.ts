@@ -1,14 +1,19 @@
-import { useFragment } from "~/gql"
+import LaunchCardFragment from "~/fragments/LaunchCardFragment"
+import { useFragment, type FragmentType } from "~/gql"
 
-export function useFilterLaunches(year: Ref<string | undefined>) {
-    return computed(() => {
-        const launches = useLaunchesStore().launches
-        if (!year.value) return launches
+export function useFilterLaunches(launches: Ref<FragmentType<typeof LaunchCardFragment>[]>) {
+    const selectedYear = ref<string | undefined>(undefined)
 
-        const unmaskedLaunches = useFragment(LaunchCardFragment, launches)
-        return launches.filter((launch, index) => {
+    const filteredLaunches = computed(() => {
+        const list = launches.value
+        if (!selectedYear.value) return list
+
+        const unmaskedLaunches = useFragment(LaunchCardFragment, list)
+        return list.filter((launch, index) => {
             const unmaskedLaunch = unmaskedLaunches[index]
-            return unmaskedLaunch?.launch_year === year.value
+            return unmaskedLaunch?.launch_year === selectedYear.value
         })
     })
+
+    return {selectedYear, filteredLaunches}
 }

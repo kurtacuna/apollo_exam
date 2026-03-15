@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { useFragment, type FragmentType } from '~/gql';
+import LaunchCardFragment from '~/fragments/LaunchCardFragment';
 
     const props = defineProps<{
         launch: FragmentType<typeof LaunchCardFragment>

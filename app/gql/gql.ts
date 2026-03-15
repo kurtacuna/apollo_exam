@@ -15,11 +15,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 type Documents = {
     "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n": typeof types.LaunchCardFragmentFragmentDoc,
-    "\n                query Launches {\n                    launches {\n                        ...LaunchCardFragment\n                    }\n                }\n            ": typeof types.LaunchesDocument,
+    "\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t": typeof types.LaunchesDocument,
 };
 const documents: Documents = {
     "\n    fragment LaunchCardFragment on Launch {\n        id,\n        mission_name,\n        launch_date_local,\n        launch_year,\n        launch_site {\n            site_name,\n            site_name_long\n        },\n        rocket {\n            rocket_name\n        },\n        details\n    }\n": types.LaunchCardFragmentFragmentDoc,
-    "\n                query Launches {\n                    launches {\n                        ...LaunchCardFragment\n                    }\n                }\n            ": types.LaunchesDocument,
+    "\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t": types.LaunchesDocument,
 };
 
 /**
@@ -43,7 +43,7 @@ export function graphql(source: "\n    fragment LaunchCardFragment on Launch {\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n                query Launches {\n                    launches {\n                        ...LaunchCardFragment\n                    }\n                }\n            "): (typeof documents)["\n                query Launches {\n                    launches {\n                        ...LaunchCardFragment\n                    }\n                }\n            "];
+export function graphql(source: "\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t"): (typeof documents)["\n\t\tquery Launches {\n\t\t\tlaunches {\n\t\t\t\t...LaunchCardFragment\n\t\t\t}\n\t\t}\n\t"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
