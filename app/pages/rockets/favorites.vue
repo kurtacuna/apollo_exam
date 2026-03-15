@@ -1,5 +1,14 @@
 <script setup lang='ts'>
     const favoriteRocketsStore = useFavoriteRocketsStore()
+    const snackbarStore = useSnackbarStore()
+
+    function removeFromFavorite(rocketId: string) {
+        favoriteRocketsStore.removeFromFavorite(rocketId)
+        snackbarStore.setSnackbar({
+            snackbar: Snackbars.removeFromFavorites,
+            text: `Removed ${rocketId} from favorites`
+        })
+    }
 </script>
 
 <template>
@@ -18,7 +27,7 @@
                     variant="tonal"
                     class="text-title-small w-auto me-4"
                     color="red"
-                    @click="favoriteRocketsStore.removeFromFavorite(rocketId)"
+                    @click="removeFromFavorite(rocketId)"
                 >
                     Remove
                 </v-btn>

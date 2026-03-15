@@ -1,24 +1,34 @@
 <script setup lang='ts'>
 import { useFragment, type FragmentType } from '~/gql';
 import LaunchCardFragment from '~/fragments/LaunchCardFragment';
-import { useFavoriteRocketsStore } from '#imports';
+import { Snackbars, useFavoriteRocketsStore } from '#imports';
 
     const props = defineProps<{
         launch: FragmentType<typeof LaunchCardFragment>
     }>()
 
     const launch = computed(() => useFragment(LaunchCardFragment, props.launch))
+    const rocketId = computed(() => launch.value.rocket?.rocket?.id)
     
     const favoriteRocketsStore = useFavoriteRocketsStore()
     const rocketIsFavorite = computed(() => {
-        return favoriteRocketsStore.isFavorite(launch.value.rocket?.rocket?.id)
+        return favoriteRocketsStore.isFavorite(rocketId.value)
     })
 
+    const snackbarStore = useSnackbarStore()
     function toggleFavoriteRocket() {
         if (rocketIsFavorite.value) {
-            favoriteRocketsStore.removeFromFavorite(launch.value.rocket?.rocket?.id)
+            favoriteRocketsStore.removeFromFavorite(rocketId.value)
+            snackbarStore.setSnackbar({
+                snackbar: Snackbars.removeFromFavorites,
+                text: `Removed ${rocketId.value} from favorites`
+            })
         } else {
-            favoriteRocketsStore.addToFavorite(launch.value.rocket?.rocket?.id)
+            favoriteRocketsStore.addToFavorite(rocketId.value)
+            snackbarStore.setSnackbar({
+                snackbar: Snackbars.addToFavorites,
+                text: `Added ${rocketId.value} to favorites`
+            })
         }
     }
 </script>

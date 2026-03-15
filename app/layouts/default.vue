@@ -1,10 +1,22 @@
 <script setup lang='ts'>
 	const showNavDrawer = ref(false)
 	provide('showNavDrawer', showNavDrawer)
+
+	const snackbarStore = useSnackbarStore()
+	const isSnackbarVisible = computed(() => {
+		return [Snackbars.addToFavorites, Snackbars.removeFromFavorites]
+			.includes(snackbarStore.currentSnackbar as Snackbars)
+	})
 </script>
 
 <template>
 	<v-app>
+		<Snackbar
+			attach="body"
+			:model-value="isSnackbarVisible"
+			:text="snackbarStore.text"
+			@update:model-value="snackbarStore.clear()"
+		></Snackbar>
 		<v-navigation-drawer temporary v-model="showNavDrawer">
 			<v-list-item>
 				<h4>Navigation Links</h4>
