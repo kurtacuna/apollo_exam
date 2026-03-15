@@ -2,10 +2,6 @@
 import { RocketFragment } from '~/fragments/RocketFragment';
 import { graphql, useFragment } from '~/gql';
 
-    definePageMeta({
-        layout: 'rocket'
-    })
-
     const route = useRoute()
 
     const RocketQuery = graphql(`
@@ -18,14 +14,6 @@ import { graphql, useFragment } from '~/gql';
 
     const { data } = await useAsyncQuery(RocketQuery, { id: route.params.id })
     const rocket = useFragment(RocketFragment, data.value?.rocket ?? {})
-
-    const overviewData = [
-        { label: "First Flight", value: rocket.first_flight },
-        { label: "Height", value: rocket.height },
-        { label: "Diameter", value: rocket.diameter },
-        { label: "Mass", value: rocket.mass },
-        { label: "Stages", value: rocket.stages },
-    ]
 </script>
 
 <template>
