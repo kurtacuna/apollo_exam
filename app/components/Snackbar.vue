@@ -6,7 +6,6 @@
     <v-snackbar
         timer="top"
         timer-color="green"
-        contained
         timeout="2000"
     >
         <template #actions>

@@ -12,7 +12,6 @@
 <template>
 	<v-app>
 		<Snackbar
-			attach="body"
 			:model-value="isSnackbarVisible"
 			:text="snackbarStore.text"
 			@update:model-value="snackbarStore.clear()"
