@@ -1,3 +1,5 @@
+import localforage from "localforage"
+
 export const useFavoriteRocketsStore = defineStore("favoriteRocketsStore", {
     state: () => ({
         favoriteRockets: [] as string[]
@@ -19,5 +21,11 @@ export const useFavoriteRocketsStore = defineStore("favoriteRocketsStore", {
             if (!id) return
             this.favoriteRockets = this.favoriteRockets.filter((favoriteRocketId) => favoriteRocketId != id)
         }
+    },
+    persist: {
+        storage: localforage,
+        debug: true,
+        key: "favorite-rockets-store",
+        include: ['favoriteRockets']
     }
 })

@@ -20,6 +20,8 @@ export default defineNuxtConfig({
 				'graphql-tag',
 				'@vue/devtools-core',
 				'@vue/devtools-kit',
+				'pinia-plugin-state-persistence',
+				'localforage'
 			]
 		},
 		plugins: [vuetify() as any],
