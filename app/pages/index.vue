@@ -21,9 +21,15 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment'
 	})
 
 	const { selectedSort, sortedLaunches } = useSortLaunches(filteredLaunches)
+	
+	const { query, searchedLaunches } = useSearchLaunches(sortedLaunches)
 </script>
 
 <template>
+	<Search	
+		label="Search missions"
+		v-model="query"
+	></Search>
 	<div class="d-flex justify-space-between align-end">
 		<h1>Launches</h1>
 		<div class="d-flex">
@@ -42,7 +48,7 @@ import LaunchCardFragment from '~/fragments/LaunchCardFragment'
 		</div>
 	</div>
 	<v-row size="3">
-		<v-col v-for="(launch, index) in sortedLaunches" :key="index" cols="1">
+		<v-col v-for="(launch, index) in searchedLaunches" :key="index" cols="1">
 			<LaunchCard :launch="launch"></LaunchCard>
 		</v-col>
 	</v-row>
