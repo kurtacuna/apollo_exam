@@ -17,7 +17,8 @@ export function useSortLaunches(launches: Ref<FragmentType<typeof LaunchCardFrag
         const maskedToUnmasked = list.map((launch, index) => {
             return {
                 masked: launch,
-                unmasked: unmaskedLaunches[index]}
+                unmasked: unmaskedLaunches[index]
+            }
         })
 
         if (selectedSort.value == "asc") {
@@ -28,6 +29,8 @@ export function useSortLaunches(launches: Ref<FragmentType<typeof LaunchCardFrag
             return maskedToUnmasked
                 .sort((a, b) => new Date(b.unmasked?.launch_date_local).getTime() - new Date(a.unmasked?.launch_date_local).getTime())
                 .map((obj) => obj.masked)
+        } else {
+            return list
         }
     })
 
